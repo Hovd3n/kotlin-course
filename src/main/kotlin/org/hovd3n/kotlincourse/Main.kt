@@ -4,7 +4,7 @@ val name: String = "Alice"
 
 var age: Int = 30
 
-const val PI: = 3.14 // просто заметка на полях
+const val PI: Double = 3.14 // просто заметка на полях
 
 lateinit var userInfo: String
 
