@@ -28,7 +28,7 @@ val doubleFour: Double = -273.15 //-273.15
 val stringFive: String = "SpaceX" //"SpaceX"
 val booleanThree: Boolean = true //true
 val stringSix: String = "“\uD83E\uDD2F”" //“🤯”
-val stringSeven: String "‘65535’"//‘65535’
+val stringSeven: String = "‘65535’"//‘65535’
 val longFive: Long = 72057594037927935L //72057594037927935L
 val floatFive: Float = 2.71828f //2.71828f
 val doubleFive: Double = 101.0101 //101.0101
