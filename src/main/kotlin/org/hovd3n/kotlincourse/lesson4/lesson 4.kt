@@ -1,4 +1,4 @@
-package org.hovd3n.kotlincourse.lessons
+package org.hovd3n.kotlincourse.lesson4
 
 class `lesson 4` {
 }

@@ -1,4 +1,4 @@
-package org.hovd3n.kotlincourse.lessons
+package org.hovd3n.kotlincourse.lesson3
 
 // lesson 3
 val name: String = "Alice"
