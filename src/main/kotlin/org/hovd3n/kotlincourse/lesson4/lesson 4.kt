@@ -26,8 +26,12 @@ val keysToValues: Map<String, String> = mapOf(
 
 val anything: Any = false // обозначает что угодно и как угодно, сам определит
 fun printMessage(message:String) {
-    printIn (message)
+    println (message)
 }
 fun fail(message:String): Nothing {
     throw illegalArgument (message)
+}
+
+fun illegalArgument(message: String): Throwable {
+
 }
