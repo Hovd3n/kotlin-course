@@ -28,10 +28,3 @@ val anything: Any = false // обозначает что угодно и как 
 fun printMessage(message:String) {
     println (message)
 }
-fun fail(message:String): Nothing {
-    throw illegalArgument (message)
-}
-
-fun illegalArgument(message: String): Throwable {
-
-}

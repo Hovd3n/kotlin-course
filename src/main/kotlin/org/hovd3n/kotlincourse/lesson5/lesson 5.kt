@@ -14,7 +14,7 @@ val isLesser = (5 < 3)
 val isGreaterOrEqual = (5 >= 5)
 val isLesserOrEqual = (5 <= 3)
 val andResult = true && true // оператор "и" возвращает правда, только если с обеих сторон правда
-val andResult1 = false && false // оператор "и" возвращает ложь, только если с обеих сторон ложь
+val andResult1 = false && false // оператор "и" возвращает ложь, если с одной сторон ложь
 val orResult = true || false // оператор "или" возвращает правду даже если с одной стороны ложь. Один из операндов д\б true
 val notResult = !(5 > 3)
 var number = 5
@@ -63,12 +63,12 @@ var number = 5
 
 
 var name: String? = null
-val result = name ?: "Unkonwn" // позволяет обойти невозможность создания кода при нехватке данных
+val result = name ?: "Unkonwn" // name если null то выполнить обозначение ее анноун
+// позволяет обойти невозможность создания кода при нехватке данных
 
-
-fun main() {
-
-}
+// ОПЕРАТОР ЭЛВИСА:
+// если аргумент (оперант) слева от оператора (обозначени оператора - ?:) является null,
+// то тогда нужно использовать то оперант (аргумент) справа от оператора
 
 fun printVolume(userVolume: Int?) {
     val defaultVolume = 30

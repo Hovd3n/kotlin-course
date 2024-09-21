@@ -1,0 +1,73 @@
+   //условные операторы
+
+
+    val number = 6
+    if (number > 5) {
+        println("Число больше 5")
+    }
+    else {
+        println("Число меньше или равно 5")
+    }
+
+    val score = 95
+    when {
+        score in 90..100 -> println("Good")
+        score in 80..90 -> println("Normal")
+        score in 70..80 -> println("Average")
+        score > 100 -> println("Not correct")
+        else -> println("Not good")
+    }
+
+val intRange: IntRange = 1..10
+val intRangeUntil = 1 until 10
+val downTo = 10 downTo 1
+val charRange: CharRange = 'd'..'r'
+val inRange = 2 in intRange
+val notInRange= 20 !in intRange
+
+val a = 3
+val b = 4
+val max = if (a > b) {
+    println("")
+    val c = a * b
+} else {
+    b
+}
+    fun getTimesOfDay(hour: Int): String {
+        return if (hour < 0 || hour > 23) {
+            "Incorrect"
+        } else if (hour in 0..4) {
+            "Night"
+        } else if (hour in 5..11) {
+            "Morning"
+        } else if (hour in 12..16) {
+            "Day"
+        } else {
+            "Evening"
+        }
+    }
+
+fun checkPassword (password : String) Boolean {
+    if (password.length <= 8) return false
+    if (checkSymbols(password)) return true
+    return checkSymbols(password)
+}
+
+fun checkSymbols (password: String) : Boolean {
+    return false
+}
+
+
+
+fun convertMark(mark: Int):String {
+    var result = when(mark){
+        in 0..20 -> "f"
+        in 21..40 -> "e"
+        in 41..60 -> "d"
+        in 61..80 -> "c"
+        in 81..90 -> "b"
+        in 91..100 -> "a"
+        else -> "Invalid mark"
+    }
+    return(result)
+}
