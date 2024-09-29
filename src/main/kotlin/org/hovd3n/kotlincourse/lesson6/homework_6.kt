@@ -129,15 +129,18 @@ fun typeOfFile(type: String) {
 // Несколько аргументов передаются через запятую. Возвращать нужно строку.
 //Подсказка: для генерации строки из числа и буквы можно использовать шалон “$result F” для фаренгейта или “$result C” для цельсия
 
-fun temperatureConvertor(value: Double, unit: String) {
+fun temperatureConvertor(value: Double, unit: String): String {
+    var totalResult: String
     if (unit == "C") {
-        val fahrenheit = value * 9/5 + 32
-        "$fahrenheit F"
+        totalResult = "${value * 9/5 + 32} F"
     }
-    if else (unit == "F") { // хрен знает почему
-        val celsius = (value - 32) / 1.8
-        "$celsius C"
+    else if (unit == "F") {
+        totalResult = "${(value - 32) / 1.8} C"
     }
+    else {
+        totalResult = "Error"
+    }
+    return totalResult
 }
 
 //Задание 7: "Подбор Одежды по Погоде"
