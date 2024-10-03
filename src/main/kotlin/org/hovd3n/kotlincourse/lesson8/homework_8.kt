@@ -1,19 +1,27 @@
 package org.hovd3n.kotlincourse.lesson8
 
+fun main() {
+
+    println(makeTextFun("Это невозможно выполнить за один день"))
+    println(makeTextFun("Я не уверен, можно ли здесь идти"))
+    println(makeTextFun("Произошла катастрофа на сервере"))
+    println(makeTextFun("Этот код работает без проблем"))
+    println(makeTextFun("Удача"))
+
+    println(dateAndTime("Пользователь вошел в систему -> 2021-12-01 09:48:23"))
+
+    println(hide("4539 1488 0343 6467"))
+
+    println(mailReplace("username@example.com"))
+
+    println(nameFromTheLink("C:/Пользователи/Документы/report.txt"))
+
+    println(makeAbbreviation("Объектно-ориентированное программирование"))
+}
 //Создайте функцию, которая будет анализировать входящие фразы и применять к ним различные преобразования,
 // делая текст более ироничным или забавным.
 // Функция должна уметь распознавать ключевые слова или условия и соответственно изменять фразу.
 //Правила Проверки и Преобразования:
-
-fun main() {
-
-    println(convert("Это невозможно выполнить за один день"))
-    println(convert("Я не уверен, можно ли здесь идти"))
-    println(convert("Произошла катастрофа на сервере"))
-    println(convert("Этот код работает без проблем"))
-    println(convert("Удача"))
-
-    println(takeAbbreviation = "Объектно-ориентированное программирование")
 
 //Если фраза содержит слово "невозможно":
 //Преобразование: Замените "невозможно" на "совершенно точно возможно, просто требует времени".
@@ -37,57 +45,57 @@ fun main() {
 //"Этот код работает без проблем"
 //"Удача"
 
-fun convert(originalText: String): String {
-    return when{
+
+fun makeTextFun(originalText: String): String {
+    return when {
         originalText.contains("невозможно", true) -> originalText.replace("невозможно", "совершенно точно возможно, просто требует времени")
         originalText.startsWith("Я не уверен", true) -> "${originalText.trim(' ')}, но моя интуиция говорит об обратном"
         originalText.contains("катастрофа", true) -> originalText.replace("катастрофа","интересные события")
         originalText.endsWith("без проблем", true) -> originalText.replace("без проблем", "с парой интересных вызовов на пути")
         originalText.contains(" ", true) -> "Иногда ${originalText}, но не всегда"
         else -> ""
+
     }
 }
 
 //Задание 1: Извлечение Даты из Строки Лога. Используй indexOf или split для получения правой части сообщения.
 //Описание: У вас есть строка лога вида "Пользователь вошел в систему -> 2021-12-01 09:48:23".
 //Извлеките отдельно дату и время из этой строки и сразу распечатай их по очереди.
-    val originalString = "2021-12-01 09:48:23"
-    val subString2 = originalString.substring(0, 10)
-    val subString1 = originalString.substring(11)
-
-    println(subString1)
-    println(subString2)
-//или так:
-    val orString = "Пользователь вошел в систему -> 2021-12-01 09:48:23"
-    val orSplit = orString.split(" ")
-    println("${orSplit[5]}")
-    println("${orSplit[6]}")
+    fun dateAndTime(originalString: String) {
+        val split = originalString.split(" ")
+        println("${split[5]}")
+        println("${split[6]}")
+}
 
 //Задание 2: Маскирование Личных Данных
 //Описание: Дана строка с номером кредитной карты "4539 1488 0343 6467".
 // Замаскируйте все цифры, кроме последних четырех, символами "*".
-    val card = "4539 1488 0343 6467"
-    val cardHidden = card.substring(15)
-    println("**** **** **** $cardHidden")
+    fun hide(card:String) {
+        val cardHidden = card.substring(15)
+        println("**** **** **** $cardHidden")
+}
 
 //Задание 3: Форматирование Адреса Электронной Почты. Используй replace
 //Описание: У вас есть электронный адрес "username@example.com". Преобразуйте его в строку "username [at] example [dot] com".
-    val mail = "username@example.com"
-    val replacedMail = mail.replace("@", " [at] ").replace(".", " [dot] ")
-    println(replacedMail)
+    fun mailReplace(mail:String){
+        val replacedMail = mail.replace("@", " [at] ").replace(".", " [dot] ")
+        println(replacedMail)}
+
 
 //Задание 4: Извлечение Имени Файла из Пути
 //Описание: Дан путь к файлу "C:/Пользователи/Документы/report.txt". Извлеките название файла с расширением.
-    val link = "C:/Пользователи/Документы/report.txt"
+    fun nameFromTheLink (link:String) {
+        println(link.substringAfterLast("/"))}
 
 //Задание 5: Создание Аббревиатуры из Фразы. Используй split с набором символов для разделения. Используй for для перебора слов. Используй var переменную для накопления первых букв.
 //Описание: У вас есть фраза, например "Объектно-ориентированное программирование". Создайте аббревиатуру из начальных букв слов (например, "ООП").
-
-    fun takeAbbreviation(phrase1: String): String {
-        var abbrList = phrase1.split(' ', '-')
+    fun makeAbbreviation(phrase1: String): String {
+        var abbrList = phrase1.split(" ", "-")
         var abbrPhrase = ""
-        for (j in abbrList.indices) { //for (i in 0 until abbrList.length)
-            abbrPhrase += (abbrList[j][0].uppercase())
+        for (letter in abbrList) {
+            if (letter.isNotEmpty()) {
+                abbrPhrase += letter[0].uppercase()
+            }
         }
-        return abbrPhrase
-}
+    return abbrPhrase
+    }
