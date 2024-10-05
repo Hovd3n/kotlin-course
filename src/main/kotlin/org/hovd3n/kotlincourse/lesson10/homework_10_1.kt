@@ -91,9 +91,9 @@ fun main() {
     println(search(array7 = arrayOf("чему", "бы", "мне", "научиться", "сегодня", "лучше поспи"), "учи котлин"))
     println(search(array7 = arrayOf("чему", "бы", "мне", "научиться", "сегодня", "лучше поспи"), "лучше поспи"))
 }
-fun search(array7: Array<String>, search: String): String {
+fun search(array7: Array<String>, searchLine: String): String {
     for (i in array7) {
-        if (i.contains(search)) {
+        if (i.contains(searchLine)) {
             return i
         }
     }
