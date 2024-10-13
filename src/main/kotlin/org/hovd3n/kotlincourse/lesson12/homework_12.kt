@@ -64,7 +64,7 @@ fun main(){
     processList(listOf("line 1", "line 5", "line 123"))
     println("")
     println("Задача Рефакторинг")
-    drawRectangle(10,10)
+    drawRectangle(5,5)
 
 }
 //Напиши рабочий код для следующих задач:
@@ -123,11 +123,13 @@ fun processList(someList: List<String>) {
 //Сначала сделай запуск функции и посмотри на результат её работы.
 // Сделай запуск после рефакторинга и проверь, чтобы результат работы был аналогичным.
 
-
+private fun checkSize(wh: Int, result: String) {
+    if (wh <= 0) throw IllegalArgumentException("$result должно быть положительным и больше нуля")
+}
 
 fun drawRectangle(width: Int, height: Int) {
-    if (width <= 0) throw IllegalArgumentException("width должно быть положительным и больше нуля")
-    if (height <= 0) throw IllegalArgumentException("height должно быть положительным и больше нуля")
+    checkSize(width, "width")
+    checkSize(height, "height")
 
     // Верхняя граница
     var topLine = "+"
