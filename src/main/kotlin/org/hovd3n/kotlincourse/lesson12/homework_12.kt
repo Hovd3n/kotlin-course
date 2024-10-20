@@ -23,7 +23,7 @@ fun noFun5(l2: String?): Int? {
 }
 
 //Напишите сигнатуру функции, которая не принимает аргументов и возвращает nullable вещественное число.
-fun noFun6(): Int? {
+fun noFun6(): Float? {
     return null
 }
 
@@ -126,6 +126,8 @@ fun processList(someList: List<String>) {
 private fun checkSize(wh: Int, result: String) {
     if (wh <= 0) throw IllegalArgumentException("$result должно быть положительным и больше нуля")
 }
+
+
 
 fun drawRectangle(width: Int, height: Int) {
     checkSize(width, "width")
