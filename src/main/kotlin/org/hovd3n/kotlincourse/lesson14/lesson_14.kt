@@ -33,14 +33,14 @@ fun main () {
     val mutableFruits = fruitsPrices.toMutableMap() // создание нового словаря, который будет уже изменяемый
 
     mutableFruits["kiwi"] = 2.75 // Добавление элемента
-    mutableFruits.putAll(mapOf("lime" to 1.1, "avocado" to 1.9))
+    mutableFruits.putAll(mapOf("lime" to 1.1, "avocado" to 1.9)) // способ объединения
     mutableFruits.remove("apple") // Удаление элемента
-    mutableFruits.clear()
+    mutableFruits.clear() // способ очистки словаря
 
     val containsApple = fruitsPrices.containsKey("apple") // проверяет есть ли ключ
     val containsValue1_5 = fruitsPrices.containsValue(1.5) // проверяет есть ли значение
     val isEmpty = fruitsPrices.isEmpty() // пустой ли словарь?
-    val isNotEmpty = fruitsPrices.isNotEmpty() //
+    val isNotEmpty = fruitsPrices.isNotEmpty() // убедиться, что в словаре нет пустых значений
     val areAllFruitsExpensive = fruitsPrices.all { it.value > 1.0 }
                         // метод, который проверяет ВСЕ элементы словаря на выполнение определенного условия
     val isAnyFruitCheap = fruitsPrices.any { it.value < 1.0 }
@@ -49,14 +49,14 @@ fun main () {
     val filteredByPrice = fruitsPrices.filter { it.value > 1.0 }
     val filteredByKeys = fruitsPrices.filterKeys { it.startsWith("a") }
     val filteredByValues = fruitsPrices.filterValues { it < 2.0 }
-    val filteredNotApple = fruitsPrices.filterNot { it.key == "apple" }
+    val filteredNotApple = fruitsPrices.filterNot { it.key == "apple" } // позволяет исключить что-либо из итогового вывода
     val countExpensiveFruits = fruitsPrices.count { it.value > 1.5 }
 
     val increasedPrices = fruitsPrices.mapValues { it.value * 1.1 } // позволяет получать возможность изменить значение
     val fruitNamesUppercase = fruitsPrices.mapKeys { it.key.uppercase() } // позволяет получать возможность изменить ключ
     val fruitsList = fruitsPrices.map { "${it.key} costs ${it.value}" } // преобразует словарь в список
 
-    val toMap = mutableFruits.toMap()
+    val toMap = mutableFruits.toMap() // преобразование изменяемого словаря в неизменяемый
     val toMutableMap = fruitsPrices.toMutableMap()
 
     fruitsPrices.forEach { (fruit, price) ->

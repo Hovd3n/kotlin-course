@@ -26,15 +26,16 @@ fun main() {
         "test 2" to "negative",
         "test 3" to "positive"
     )
-    val finalTestResults = testResults + ("test 4" to "negative")
-    println(finalTestResults)
+    testResults["test 4"] = "negative"
+    println(testResults)
 
 //Посчитайте количество успешных тестов в словаре с результатами.
-    val positiveTests = finalTestResults.filterValues { it == "positive" }.count()
+    val positiveTests = testResults.filterValues { it == "positive" }.count()
     println(positiveTests)
 
 //Удалите из изменяемого словаря с баг-трекингом запись о баге, который был исправлен.
-    val madeTests = finalTestResults - "test 1" - "test 3"
+
+    val madeTests = testResults.remove("test 1")
     println(madeTests)
 
 //Для словаря с результатами тестирования веб-страниц (ключ — URL страницы, значение — статус ответа),
@@ -64,11 +65,18 @@ fun main() {
         "www.2.ru" to "tested",
         "www.3.ru" to "not tested"
     )
-    val testApiFinal = testApi.getOrDefault("www.4.ru") { "not tested" } // как-то не так похоже
+    val testApiFinal = testApi.getOrDefault("www.4.ru") { "not tested" }
     println(testApiFinal)
 
-//Из словаря, содержащего конфигурации тестового окружения (ключ — название параметра конфигурации),
+//Из словаря, содержащего конфигурации тестового окружения (ключ — название параметра конфигурации),        !!!!!!!!!!!
 // получите значение для "browserType". Ответ не может быть null.
+    val testConfig = mapOf(
+        "browserType" to "Google Chrome 53.1",
+        "configName 2" to "version 2",
+        "configName 3" to "version 3"
+    )
+    val testConfigFinal = testConfig.getOrDefault("configName 4") { "not tested" }
+    println(testConfigFinal)
 
 //Создайте копию неизменяемого словаря с данными о версиях тестируемого ПО, чтобы добавить новую версию.
     val testPo = mapOf(
@@ -86,9 +94,9 @@ fun main() {
         "iPhone 13" to "user 2",
         "Samsung 20" to "user 3"
     )
-    val anotherMobTest = mobTest.getOrElse("iPhone 13") { "default"}
+    val anotherMobTest = mobTest.getOrElse("iPhone 13") { "default" }
     println(anotherMobTest)
-    val anotherMobTest2 = mobTest.getOrElse("iPhone 14") { "default"}
+    val anotherMobTest2 = mobTest.getOrElse("iPhone 14") { "default" }
     println(anotherMobTest2)
 
 //Проверьте, содержит ли словарь с ошибками тестирования (код и описание) определенный код ошибки.
@@ -108,53 +116,62 @@ fun main() {
         "TestID_Version 2" to "Failed",
         "TestID_Version 3" to "Skipped"
     )
-    val filter = testVersions
+    val filter = testVersions.filterKeys { it.contains("3") }
+    println(filter)
+
 
 //У вас есть словарь, где ключи — это названия функциональных модулей приложения, а значения — результаты их тестирования.
 // Проверьте, есть ли модули с неудачным тестированием.
-
+    val apps = mapOf(
+        "fun1" to "Passed",
+        "fun2" to "Failed",
+        "fun3" to "Passed"
+    )
+    val appsModules = apps.any {it.value == "Failed"}
+    println(appsModules)
 
 //Добавьте в изменяемый словарь с настройками тестовой среды настройки из другого словаря.
+    val mutSettings = mutableMapOf(
+        "test 1" to "settings 1",
+        "test 2" to "settings 2",
+        "test 3" to "settings 3"
+    )
+    val mutSettings2 = mapOf(
+        "test 4" to "settings 4"
+    )
+    mutSettings.putAll(mutSettings2)
+    println(mutSettings)
 
 //Объедините два неизменяемых словаря с данными о багах.
-    val bagReport1 = mutableMapOf(
+    val bagReport1 = mapOf(
         "Тестовый метод1" to "Баг1",
         "Тестовый метод2" to "Баг2",
         "Тестовый метод3" to "Баг3",
     )
-
-    val bagReport2 = mutableMapOf(
+    val bagReport2 = mapOf(
         "Тестовый метод7" to "Баг2",
         "Тестовый метод8" to "Баг3",
         "Тестовый метод9" to "Баг4"
     )
-
-    val bagReportAll = mutableMapOf<String, String>()
-
-    bagReportAll.putAll(bagReport1)
-    bagReportAll.putAll(bagReport2)
-
-    println("bagReportAll $bagReportAll\n")
+    val bagReportAll = bagReport1 + bagReport2
+    println(bagReportAll)
 
 //Очистите изменяемый словарь с временными данными о последнем прогоне автоматизированных тестов.
-    val lastTimeRunAutoTest: MutableMap<String, String> = mutableMapOf(
-        "Test_1" to "18.10.2024 13:13",
-        "Test_2" to "19.10.2024 13:13",
-        "Test_3" to "20.10.2024 13:13"
+    val AutoTest: MutableMap<String, String> = mutableMapOf(
+        "Test 1" to "18.10.2024 13:13",
+        "Test 2" to "19.10.2024 13:13",
+        "Test 3" to "20.10.2024 13:13"
     )
-
-    lastTimeRunAutoTest.clear()
-
-    println("$lastTimeRunAutoTest\n")
+    AutoTest.clear()
+    println(AutoTest)
 
 //Исключите из отчета по автоматизированному тестированию те случаи, где тесты были пропущены (имеют статус “skipped”)
-    val modulesTestsNew1 = testVersions
-        .filterNot { it.value == "Skipped" }
-    println("modulesTestsNew1 $modulesTestsNew1\n")
-
+    val modulesTests = testVersions.filterNot { it.value == "Skipped" }
+    println(modulesTests)
 
 //Удалите из словаря с конфигурациями тестирования набор устаревших конфигураций.
-
+    val newBagReportAll = bagReportAll - "Тестовый метод3"
+    println(newBagReportAll)
 
 //Создайте отчет о тестировании, преобразовав словарь с результатами тестирования
 // (ключ — идентификатор теста, значение — результат) в список строк формата "Test ID: результат".
@@ -163,31 +180,39 @@ fun main() {
         "Test ID2" to "Failed",
         "Test ID3" to "Skipped"
     )
-
     val testReportString = testReport.map { "${it.key}: ${it.value}" }
-
-    println("testReportString $testReportString\n")
+    println(" $testReportString")
 
 //Преобразуйте изменяемый словарь с результатами последнего тестирования в неизменяемый для архивации.
     val testReportToMap = testReport.toMap()
-
-    println("testReportToMap $testReportToMap\n")
+    println(testReportToMap)
 
 //Преобразуйте словарь, содержащий ID теста и данные о времени выполнения тестов,
-// заменив идентификаторы тестов на их названия (название можно получить вызвав фейковый метод, например getNameById(id: String))
-
-//Для словаря с оценками производительности различных версий приложения увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
-    val performAppVer = mapOf(
-        "Version1" to 4.9F,
-        "Version2" to 6.0F,
-        "Version3" to 5.0F
+// заменив идентификаторы тестов на их названия (название можно получить вызвав фейковый метод, например getNameById(id: String)) !!!!!!!!!!!!!!!!!
+    val testResults1 = mapOf(
+        "test 123" to 130,
+        "test 456" to 260,
+        "test 789" to 390
     )
-
-    val performAppVerNew = performAppVer.mapValues {
-        "%.1f".format(it.value * 1.1)
+    fun getNameById(id: String): String {
+        return when (id) {
+            "test 123" -> "Login test"
+            "test 456" -> "Registration test"
+            "test 789" -> "Check test"
+            else -> "Unknown test"
+        }
     }
+    println(testResults1.mapKeys { getNameById(it.key) })
 
-    println("performAppVerNew $performAppVerNew \n")
+
+    println("ОТМЕТКА ДЛЯ УДОБСТВА ПРОВЕРКИ ОЧЕРЕДНОЙ ЗАДАЧИ")
+//Для словаря с оценками производительности различных версий приложения увеличьте каждую оценку на 10%, чтобы учесть новые условия тестирования.
+    val аppVersions = mapOf(
+        "Version1" to 4.9F,
+        "Version2" to 5.5F,
+        "Version3" to 6.0F
+    )
+    println(аppVersions.mapValues { it.value * 1.1 })
 
 //Проверьте, пуст ли словарь с ошибками компиляции тестов.
     val testCompilationErrors = mapOf(
@@ -195,10 +220,8 @@ fun main() {
         "Error_2" to "Description_2",
         "Error_3" to "Description_3"
     )
-
     val checkIsEmpty = testCompilationErrors.isEmpty()
-
-    println("checkIsEmpty $checkIsEmpty\n")
+    println(checkIsEmpty)
 
 //Убедитесь, что словарь с результатами нагрузочного тестирования не пуст.
     val loadTesting = mapOf(
@@ -206,16 +229,19 @@ fun main() {
         "Test_2" to "Description_2",
         "Test_3" to "Description_3"
     )
-
     val checkIsEmpty1 = loadTesting.isNotEmpty()
-    println("checkIsEmpty1 $checkIsEmpty1\n")
+    println("checkIsEmpty1 $checkIsEmpty1")
 
 //Проверьте, прошли ли успешно все автоматизированные тесты в словаре с результатами.
+    val testReportAll = testReport.all { it.value == "Passed"}
+    println(testReportAll)
 
 //Определите, содержит ли словарь с результатами тестирования хотя бы один тест с ошибкой.
+    val testReportAll2 = testReport.any { it.value == "Failed"}
+    println(testReportAll2)
 
 //Отфильтруйте словарь с результатами тестирования сервисов, оставив только те тесты, которые не прошли успешно и содержат в названии “optional”.
-
-
-
+    val testReportAll3 = testReport.filter { it.value == "optional"}
+    println(testReportAll3)
+    
 }
