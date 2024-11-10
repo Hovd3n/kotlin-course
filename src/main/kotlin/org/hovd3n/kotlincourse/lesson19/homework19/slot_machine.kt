@@ -15,6 +15,17 @@ package org.hovd3n.kotlincourse.lesson19.homework19
 //владелец
 //телефон поддержки.
 
+class SlotMachine(
+    val color: String,
+    val model: String,
+    private var turnOn: Boolean = false,
+    private var osLoad: Boolean = false,
+    val availableGames: List<String>,
+    val joystickOrNot: Boolean = false,
+    private var balance: Double = 0.0,
+    private var owner: String,
+    private var phoneNumber: String
+)
 //Методы:
 //включить
 //выключить
@@ -26,23 +37,15 @@ package org.hovd3n.kotlincourse.lesson19.homework19
 //открыть сейф и выдать наличные
 //выплатить выигрыш
 
-class SlotMachine(
-    val color: String,
-    val model: String,
-    private var turnOn: Boolean = false,
-    private var osLoad: Boolean = false,
-    val availableGames: List<String>,
-    val joystickOrNot: Boolean = false,
-    private var balance: Double = 0.0,
-    private var owner: String,
-    var phoneNumber: String
-) {
+{
     fun turnOn() {
         turnOn = true
+        loadOs()
     }
 
     fun turnOff() {
         turnOn = false
+        shutDownOs()
     }
     private fun loadOs() {}
     private fun shutDownOs() {}
@@ -55,16 +58,6 @@ class SlotMachine(
     fun payForPlay(amount: Double) {
         balance += amount
     }
-    private fun openVaultAndPay(amount: Double): Boolean {
-        return if (balance >= amount) {
-            balance -= amount
-            true
-        }
-        else {
-            false
-        }
-    }
-    private fun payWinnings(amount: Double): Boolean {
-        return openVaultAndPay(amount)
-    }
+    fun openVaultAndPay() {}
+    protected fun payWinnings() {}
 }
