@@ -6,7 +6,7 @@ class ChildrenClass(
 
 //объясни, почему этот аргумент доступен в main() несмотря на то, что это не поле
     publicVal: String
-) : BaseClass(privateVal, protectedVal, privateVal) {
+) : BaseClass(privateVal, protectedVal, publicVal) {
 //потому что он в BaseClass объявлен как val publicVal: String
 // а значит публичный. А ChildrenClass наследует от BaseClass
 

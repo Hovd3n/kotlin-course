@@ -6,7 +6,7 @@ abstract class BaseClass(
 
 //объясни, почему это поле доступно в main() для чтения из класса ChildrenClass:
     private val privateVal: String,
-//потому что в ChildrenClass оно сохраняется как паблик
+//потому что в ChildrenClass оно сохраняется как новый вообще паблик с таким же именем
 
 
 //объясни, почему это поле недоступно в main()
